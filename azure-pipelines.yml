@@ -20,7 +20,7 @@ stages:
       inputs:
         provider: azurerm
         command: init
-        backendServiceArm: dev-svc
+        backendServiceArm: prod-svc
         backendAzureRmStorageAccountName: prodstorage1998
         backendAzureRmContainerName: container
         backendAzureRmKey: prod-tf-state

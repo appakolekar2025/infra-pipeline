@@ -3,7 +3,7 @@ trigger:
    include:
      - main
 
-pool:dev- pool
+pool:dev-pool
 
 stages:
   - stage: 

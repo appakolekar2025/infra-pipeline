@@ -1,26 +1,26 @@
-trigger: 
- branches:
-   include:
-     - main
+trigger:
+  branches:
+    include:
+      - main
 
-pool:dev-pool
+pool:
+  name: dev-pool
 
 stages:
-  - stage: 
-    jobs:
-      - job: 
-        steps:
+- stage: Terraform
+  jobs:
+  - job: TerraformJob
+    steps:
 
-- task: TerraformInstaller@1
-  inputs:
-    terraformVersion: 'latest'
-  - task: TerraformTask@5
-    inputs:
-      provider: 'azurerm'
-      command: 'init'
-      backendServiceArm: 'dev-svc'
-      backendAzureRmStorageAccountName: 'prodstorage1998'
-      backendAzureRmContainerName: 'container'
-      backendAzureRmKey: 'prod-tf-state'
-      
+    - task: TerraformInstaller@1
+      inputs:
+        terraformVersion: latest
 
+    - task: TerraformTask@5
+      inputs:
+        provider: azurerm
+        command: init
+        backendServiceArm: dev-svc
+        backendAzureRmStorageAccountName: prodstorage1998
+        backendAzureRmContainerName: container
+        backendAzureRmKey: prod-tf-state

@@ -6,15 +6,20 @@ trigger:
 pool:
   name: infra-pool
 
+variables:
+  ARM_USE_AZUREAD: 'true'
+
 stages:
 - stage: Terraform
   jobs:
   - job: TerraformJob
     steps:
 
+    - checkout: self
+
     - task: TerraformInstaller@1
       inputs:
-        terraformVersion: 'latest'
+        terraformVersion: '4.81.0'
 
     - task: TerraformTask@5
       inputs:
@@ -26,5 +31,3 @@ stages:
         backendAzureRmStorageAccountName: 'prodstorage1998'
         backendAzureRmContainerName: 'container'
         backendAzureRmKey: 'terraform-tf-state'
-  
-  

@@ -4,7 +4,7 @@ trigger:
       - main
 
 pool:
-  name: dev-pool
+  name: infra-pool
 
 stages:
 - stage: Terraform
@@ -20,7 +20,7 @@ stages:
       inputs:
         provider: azurerm
         command: init
-        backendServiceArm: prod-svc
+        backendServiceArm: Infra-Service_Principle
         backendAzureRmStorageAccountName: prodstorage1998
         backendAzureRmContainerName: container
         backendAzureRmKey: prod-tf-state

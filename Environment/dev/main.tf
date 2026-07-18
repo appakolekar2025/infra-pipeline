@@ -21,6 +21,7 @@ module "pip" {
   
 }
 module "nic" {
+    depends_on = [ module.resource_group,module.subnet,module.virtual_network ]
     source = "../../module/azurerm_nic"
     nic = var.network_interface
   

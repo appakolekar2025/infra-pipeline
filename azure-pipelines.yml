@@ -1,28 +1,27 @@
 trigger:
- branches:
-  include:
-  -main
+  branches:
+    include:
+      - main
 
-  pool:
-   name: infra-pool
+pool:
+  name: infra-pool
 
 stages:
-  - stage: Terraform
-    jobs:
-      job: TerraformJob
-
+- stage: Terraform
+  jobs:
+  - job: TerraformJob
     steps:
     - task: TerraformInstaller@1
       inputs:
-        terraformVersion: 'latest'
+        terraformVersion: latest
+
     - task: TerraformTask@5
       inputs:
-        provider: 'azurerm'
-        command: 'init'
-        backendServiceArm: 'infra-svc'
-        backendAzureRmOverrideSubscriptionID: 'd4fb712a-aae3-49cf-8c1b-9ed8f8b11a56'
-        backendAzureRmResourceGroupName: 'production-rg'
-        backendAzureRmStorageAccountName: 'prodstorage1998'
-        backendAzureRmContainerName: 'container'
-        backendAzureRmKey: 'terraform-tf-state'
-
+        provider: azurerm
+        command: init
+        backendServiceArm: infra-svc
+        backendAzureRmOverrideSubscriptionID: d4fb712a-aae3-49cf-8c1b-9ed8f8b11a56
+        backendAzureRmResourceGroupName: production-rg
+        backendAzureRmStorageAccountName: prodstorage1998
+        backendAzureRmContainerName: container
+        backendAzureRmKey: terraform-tf-state

@@ -7,7 +7,7 @@ pool:
   name: infra-pool
 
 variables:
-  ARM_USE_AZUREAD: true
+  ARM_USE_AZUREAD: 'true'
 
 stages:
 - stage: Terraform
@@ -15,17 +15,19 @@ stages:
   - job: TerraformJob
     steps:
 
+    - checkout: self
+
     - task: TerraformInstaller@1
       inputs:
-        terraformVersion: latest
+        terraformVersion: '4.81.0'
 
     - task: TerraformTask@5
       inputs:
-        provider: azurerm
-        command: init
-        workingDirectory: $(System.DefaultWorkingDirectory)/infra-pipeline
-        backendServiceArm: Infra-Service_Principle
-        backendAzureRmResourceGroupName: production-rg
-        backendAzureRmStorageAccountName: prodstorage1998
-        backendAzureRmContainerName: container
-        backendAzureRmKey: terraform-tf-state
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)'
+        backendServiceArm: 'Infra-Service_Principle'
+        backendAzureRmResourceGroupName: 'production-rg'
+        backendAzureRmStorageAccountName: 'prodstorage1998'
+        backendAzureRmContainerName: 'container'
+        backendAzureRmKey: 'terraform-tf-state'

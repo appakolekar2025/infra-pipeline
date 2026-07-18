@@ -67,7 +67,7 @@ virtual_machine = {
         location="eastus"
         size="Standard_F2"
         admin_username      = "admin123"
-  network_interface_ids = [azurerm_network_interface.nic.id,]
+  
 
   os_disk= {
     caching              = "ReadWrite"

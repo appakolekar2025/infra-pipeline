@@ -34,12 +34,14 @@ public_ip = {
         resource_group_name="dev-rg"
         location="eastus"
         allocation_method="Dynamic"
+        sku="Basic"
     }
        pip2={
         name="backend_pip"
         resource_group_name="dev-rg"
         location="eastus"
          allocation_method="Dynamic"
+         sku="Basic"
     }
 }
 network_interface = {
@@ -49,6 +51,7 @@ network_interface = {
         nic_location="eastus"
         virtual_network_name="dev-vnet"
         subnet_name="frontend-subnet"
+        pip_name="frontend_pip"
 
     }
      nic2={
@@ -57,6 +60,7 @@ network_interface = {
         nic_location="eastus"
         virtual_network_name="dev-vnet"
         subnet_name="backend-subnet"
+        pip_name="backend_pip"
 
     }
 }

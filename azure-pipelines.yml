@@ -23,7 +23,7 @@ stages:
       inputs:
         provider: azurerm
         command: init
-        workingDirectory: $(System.DefaultWorkingDirectory)
+        workingDirectory: $(System.DefaultWorkingDirectory)/infra-pipeline
         backendServiceArm: Infra-Service_Principle
         backendAzureRmResourceGroupName: production-rg
         backendAzureRmStorageAccountName: prodstorage1998

@@ -1,9 +1,16 @@
 terraform {
-    backend "azurerm" {}
+    
   required_providers {
     azurerm={
         source = "hashicorp/azurerm"
     }
+  }
+  backend "azurerm" {
+    resource_group_name = "production-rg"
+    storage_account_name = "prodstorage1998"
+    container_name = "container"
+    key = "terraform-tf-state"
+    
   }
   
 }
@@ -15,7 +22,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "RG" {
-  name = "dev-rg"
+  name = "prod-rg"
   location = "centralindia"
   
 }

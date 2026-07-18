@@ -20,3 +20,8 @@ module "pip" {
     pip = var.public_ip
   
 }
+module "nic" {
+    source = "../../module/azurerm_nic"
+    nic = var.network_interface
+  
+}

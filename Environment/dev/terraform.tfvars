@@ -52,6 +52,7 @@ network_interface = {
         virtual_network_name="dev-vnet"
         subnet_name="frontend-subnet"
         pip_name="frontend_pip"
+        private_ip_allocation_allocation="Dynamic"
 
     }
      nic2={
@@ -61,6 +62,7 @@ network_interface = {
         virtual_network_name="dev-vnet"
         subnet_name="backend-subnet"
         pip_name="backend_pip"
+        private_ip_allocation_allocation="Dynamic"
         
 
     }

@@ -32,14 +32,14 @@ public_ip = {
     pip1={
         name="frontend_pip"
         resource_group_name="dev-rg"
-        virtual_network_name="dev-vnet"
         location="eastus"
+        allocation_method="Dynamic"
     }
        pip2={
         name="backend_pip"
         resource_group_name="dev-rg"
-        virtual_network_name="dev-vnet"
         location="eastus"
+         allocation_method="Dynamic"
     }
 }
 network_interface = {

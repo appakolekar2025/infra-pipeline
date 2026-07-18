@@ -14,3 +14,9 @@ module "subnet" {
   source = "../../module/azurerm_subnet"
   snets = var.subnet
 }
+module "pip" {
+    depends_on = [ module.resource_group ]
+    source = "../../module/azurerm_PIP"
+    pip = var.public_ip
+  
+}

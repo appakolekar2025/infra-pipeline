@@ -28,17 +28,20 @@ stages:
         backendAzureRmKey: terraform-tf-state
 
     - task: TerraformTask@5
+      displayName: TerraformValidate
       inputs:
         provider: azurerm
         command: validate
 
     - task: TerraformTask@5
+      displayName: TerraformPlan
       inputs:
         provider: azurerm
         command: plan
         environmentServiceNameAzureRM: infra-svc
 
     - task: TerraformTask@5
+      displayName: TerraformApply
       inputs:
         provider: azurerm
         command: apply

@@ -11,17 +11,27 @@ variables:
 
 stages:
 - stage: Terraform
+  displayName: Terraform Deployment
+
   jobs:
   - job: TerraformJob
+    displayName: Terraform Init
+
     steps:
 
     - checkout: self
 
     - task: TerraformInstaller@1
+      displayName: Install Terraform
       inputs:
-        terraformVersion: '4.81.0'
+        terraformVersion: '1.15.5'
+
+    - powershell: |
+        terraform version
+      displayName: Verify Terraform Version
 
     - task: TerraformTask@5
+      displayName: Terraform Init
       inputs:
         provider: 'azurerm'
         command: 'init'

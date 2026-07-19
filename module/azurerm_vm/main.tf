@@ -13,14 +13,14 @@ admin_username      = each.value.admin_username
 
  
   os_disk {
-    caching              = each.value.caching
-    storage_account_type = each.value.storage_account_type
+    caching              = each.value.os_disk.caching
+      storage_account_type = each.value.os_disk.storage_account_type
   }
 
-  source_image_reference {
-    publisher = each.value.publisher
-    offer     = each.value.offer
-    sku       = each.value.sku
-    version   = each.value.version
-  }
+source_image_reference {
+  publisher = each.value.source_image_reference.publisher
+  offer      = each.value.source_image_reference.offer
+  sku         = each.value.source_image_reference.sku
+  version     = each.value.source_image_reference.version
+}
 }

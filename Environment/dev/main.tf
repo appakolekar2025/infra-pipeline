@@ -26,18 +26,3 @@ module "nic" {
   nic        = var.network_interface
 
 }
-module "vm" {
-  depends_on = [module.resource_group, module.virtual_network, module.subnet, module.nic, module.pip]
-  source     = "../../module/azurerm_vm"
-  vms = {
-    for k, v in var.virtual_machine : k => merge(
-      v,
-      {
-        network_interface_ids = [
-          module.nic.nic_ids[k]
-        ]
-      }
-    )
-  }
-
-}

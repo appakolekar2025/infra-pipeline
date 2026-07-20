@@ -20,9 +20,10 @@ module "pip" {
   pip        = var.public_ip
 
 }
-module "nic" {
-  depends_on = [module.resource_group, module.subnet, module.virtual_network]
-  source     = "../../module/azurerm_nic"
-  nic        = var.network_interface
-
+module "vm" {
+  depends_on = [ module.pip,module.subnet ]
+  source = "../../module/azurerm_vm"
+  vms = var.virtual_machine
+  nic = var.network_interface
+  
 }

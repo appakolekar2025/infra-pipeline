@@ -24,7 +24,7 @@ admin_username      = each.value.admin_username
   admin_password = each.value.admin_password
   disable_password_authentication=false
   network_interface_ids = [
-    azurerm_network_interface.nic[each.key].id
+    azurerm_network_interface.nic[vm1].id
   ]
 
  

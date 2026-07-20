@@ -44,52 +44,30 @@ public_ip = {
 
   }
 }
-network_interface = {
-  nic1 = {
-    name                          = "frontend-nic"
-    nic_rg_name                   = "dev-rg"
-    nic_location                  = "eastus"
-    virtual_network_name          = "dev-vnet"
-    subnet_name                   = "frontend-subnet"
-    pip_name                      = "frontend_pip"
-    private_ip_address_allocation = "Dynamic"
 
-  }
-  nic2 = {
-    name                          = "backend-nic"
-    nic_rg_name                   = "dev-rg"
-    nic_location                  = "eastus"
-    virtual_network_name          = "dev-vnet"
-    subnet_name                   = "backend-subnet"
-    pip_name                      = "backend_pip"
-    private_ip_address_allocation = "Dynamic"
-
-
-  }
-}
 virtual_machine = {
   vm1 = {
     name                = "frontend-vm"
-    resource_group_name = "dev-rg"
-    location            = "eastus"
+    nic_name                      = "frontend-nic"
+    rg_name                   = "dev-rg"
+    location                  = "eastus"
+     nic_vnet_name          = "dev-vnet"
+     nic_subnet_name                   = "frontend-subnet"
+     nic_pip_name                      = "backend_pip"
     size                = "Standard_F2"
     admin_username      = "admin123"
     admin_password      = "admin@12345"
     nic_name            = "frontend-nic"
     pip_name            = "frontend_pip"
     subnet_name         = "frontend-subnet"
-    os_disk = {
-      caching              = "ReadWrite"
-      storage_account_type = "Standard_LRS"
-    }
-
-    source_image_reference = {
-      publisher = "Canonical"
-      offer     = "UbuntuServer"
-      sku       = "16.04-LTS"
-      version   = "latest"
+      os_disk_caching              = "ReadWrite"
+       os_disk_storage_account_type = "Standard_LRS"
+      source_image_reference_publisher = "Canonical"
+      source_image_reference_offer     = "UbuntuServer"
+      source_image_reference_sku       = "16.04-LTS"
+      source_image_reference_version   = "latest"
     }
   }
 
-}
+
 

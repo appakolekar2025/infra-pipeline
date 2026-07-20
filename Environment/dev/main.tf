@@ -24,6 +24,6 @@ module "vm" {
   depends_on = [ module.pip,module.subnet ]
   source = "../../module/azurerm_vm"
   vms = var.virtual_machine
-  nic = var.network_interface
+nic = var.network_interface
   
 }

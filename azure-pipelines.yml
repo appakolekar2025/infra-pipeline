@@ -7,6 +7,7 @@ pool:
   name: infra-pool
 
 variables:
+  System.Debug: true
   terraformWorkingDirectory: '$(Build.SourcesDirectory)/Environment/dev'
 
 stages:
@@ -22,7 +23,7 @@ stages:
     - task: TerraformInstaller@1
       displayName: Install Terraform
       inputs:
-        terraformVersion: latest
+        terraformVersion: '1.15.8'
 
     - task: TerraformTask@5
       displayName: Terraform Init
@@ -44,6 +45,18 @@ stages:
         command: validate
         workingDirectory: $(terraformWorkingDirectory)
 
+    - script: |
+        echo ===== Terraform Version =====
+        terraform version
+
+        echo ===== Terraform Providers =====
+        terraform providers
+
+        echo ===== Current Workspace =====
+        terraform workspace show
+      workingDirectory: $(terraformWorkingDirectory)
+      displayName: Terraform Debug
+
     - task: TerraformTask@5
       displayName: Terraform Plan
       inputs:
@@ -54,6 +67,7 @@ stages:
 
     - task: TerraformTask@5
       displayName: Terraform Apply
+      condition: succeeded()
       inputs:
         provider: azurerm
         command: apply

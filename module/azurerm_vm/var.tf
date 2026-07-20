@@ -1,3 +1,7 @@
 variable "vms" {
   
 }
+
+variable "nic" {
+  
+}

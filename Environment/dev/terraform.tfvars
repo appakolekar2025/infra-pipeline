@@ -44,22 +44,25 @@ public_ip = {
 
   }
 }
-
+nic = {
+  nic1 = {
+    nic_name       = "frontend-nic"
+    rg_name        = "dev-rg"
+    location       = "eastus"
+    subnet_name    = "frontend-subnet"
+    nic_vnet_name  = "dev-vnet"
+    nic_pip_name   = "frontend_pip"
+    name           = "ipconfig1"
+  }
+}
 virtual_machine = {
   vm1 = {
     name                = "frontend-vm"
-    nic_name                      = "frontend-nic"
     rg_name                   = "dev-rg"
     location                  = "eastus"
-     nic_vnet_name          = "dev-vnet"
-     nic_subnet_name                   = "frontend-subnet"
-     nic_pip_name                      = "backend_pip"
     size                = "Standard_F2"
     admin_username      = "admin123"
     admin_password      = "admin@12345"
-    nic_name            = "frontend-nic"
-    pip_name            = "frontend_pip"
-    subnet_name         = "frontend-subnet"
       os_disk_caching              = "ReadWrite"
        os_disk_storage_account_type = "Standard_LRS"
       source_image_reference_publisher = "Canonical"

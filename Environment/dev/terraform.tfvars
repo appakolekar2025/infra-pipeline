@@ -45,7 +45,7 @@ public_ip = {
   }
 }
 nic = {
-  nic1 = {
+  vm1 = {
     nic_name       = "frontend-nic"
     rg_name        = "dev-rg"
     location       = "eastus"

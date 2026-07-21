@@ -57,20 +57,23 @@ nic = {
 }
 virtual_machine = {
   vm1 = {
-    name                = "frontend-vm"
-    rg_name                   = "dev-rg"
-    location                  = "eastus"
-    size                = "Standard_F2"
-    admin_username      = "admin123"
-    admin_password      = "admin@12345"
-      os_disk_caching              = "ReadWrite"
-       os_disk_storage_account_type = "Standard_LRS"
-      source_image_reference_publisher = "Canonical"
-      source_image_reference_offer     = "UbuntuServer"
-      source_image_reference_sku       = "16.04-LTS"
-      source_image_reference_version   = "latest"
+    name           = "frontend-vm"
+    rg_name        = "dev-rg"
+    location       = "eastus"
+    size           = "Standard_F2"
+    admin_username = "admin123"
+    admin_password = "admin@12345"
+
+    os_disk = {
+      caching              = "ReadWrite"
+      storage_account_type = "Standard_LRS"
+    }
+
+    source_image_reference = {
+      publisher = "Canonical"
+      offer     = "UbuntuServer"
+      sku       = "16.04-LTS"
+      version   = "latest"
     }
   }
-
-
-
+}

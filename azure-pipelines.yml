@@ -7,69 +7,55 @@ pool:
   name: infra-pool
 
 variables:
-  System.Debug: true
   terraformWorkingDirectory: '$(Build.SourcesDirectory)/Environment/dev'
 
 stages:
-- stage: Terraform
-  displayName: Terraform Deployment
+- stage: TerraformStage
+  displayName: 'Terraform Stage'
 
   jobs:
   - job: TerraformJob
-    displayName: Terraform Job
+    displayName: 'Terraform Job'
 
     steps:
 
     - task: TerraformInstaller@1
-      displayName: Install Terraform
+      displayName: 'Install Terraform'
       inputs:
-        terraformVersion: '1.15.8'
+        terraformVersion: 'latest'
 
     - task: TerraformTask@5
-      displayName: Terraform Init
+      displayName: 'Terraform Init'
       inputs:
-        provider: azurerm
-        command: init
-        workingDirectory: $(terraformWorkingDirectory)
-        backendServiceArm: infra-svc
-        backendAzureRmOverrideSubscriptionID: d4fb712a-aae3-49cf-8c1b-9ed8f8b11a56
-        backendAzureRmResourceGroupName: production-rg
-        backendAzureRmStorageAccountName: prodstorage1998
-        backendAzureRmContainerName: container
-        backendAzureRmKey: terraform-tf-state
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(terraformWorkingDirectory)'
+        backendServiceArm: 'dev-infra'
+        backendAzureRmOverrideSubscriptionID: 'd4fb712a-aae3-49cf-8c1b-9ed8f8b11a56'
+        backendAzureRmResourceGroupName: 'dev-rg'
+        backendAzureRmStorageAccountName: 'devstoragetfstate99'
+        backendAzureRmContainerName: 'dev-container'
+        backendAzureRmKey: 'dev-state'
 
     - task: TerraformTask@5
-      displayName: Terraform Validate
+      displayName: 'Terraform Validate'
       inputs:
-        provider: azurerm
-        command: validate
-        workingDirectory: $(terraformWorkingDirectory)
-
-    - script: |
-        echo ===== Terraform Version =====
-        terraform version
-
-        echo ===== Terraform Providers =====
-        terraform providers
-
-        echo ===== Current Workspace =====
-        terraform workspace show
-      workingDirectory: $(terraformWorkingDirectory)
-      displayName: Terraform Debug
+        provider: 'azurerm'
+        command: 'validate'
+        workingDirectory: '$(terraformWorkingDirectory)'
 
     - task: TerraformTask@5
-      displayName: Terraform Plan
+      displayName: 'Terraform Plan'
       inputs:
-        provider: azurerm
-        command: plan
-        workingDirectory: $(terraformWorkingDirectory)
-        environmentServiceNameAzureRM: infra-svc
+        provider: 'azurerm'
+        command: 'plan'
+        workingDirectory: '$(terraformWorkingDirectory)'
+        environmentServiceNameAzureRM: 'dev-infra'
 
     - task: TerraformTask@5
-      displayName: Terraform Apply
-      condition: succeeded()
+      displayName: 'Terraform Apply'
       inputs:
-        provider: azurerm
-        command: apply
-        workingDirectory: $(terraformWorkingDirectory)
-        environmentServiceNameAzureRM: infra-svc
+        provider: 'azurerm'
+        command: 'apply'
+        workingDirectory: '$(terraformWorkingDirectory)'
+        environmentServiceNameAzureRM: 'dev-infra'

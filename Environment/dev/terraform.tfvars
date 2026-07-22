@@ -60,7 +60,7 @@ virtual_machine = {
     name           = "frontend-vm"
     rg_name        = "myrg"
     location       = "eastus"
-    size           = "Standard_F2"
+    size           = "Standard_D2s_v3"
     admin_username = "admin123"
     admin_password = "admin@12345"
 

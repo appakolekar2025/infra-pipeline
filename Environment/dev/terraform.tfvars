@@ -1,13 +1,13 @@
 resource_group = {
   rg1 = {
-    name     = "dev-rg"
+    name     = "myrg"
     location = "eastus"
   }
 }
 virtual_network = {
   vnet1 = {
     name                = "dev-vnet"
-    resource_group_name = "dev-rg"
+    resource_group_name = "myrg"
     location            = "eastus"
     address_space       = ["10.0.0.0/16"]
   }
@@ -15,14 +15,14 @@ virtual_network = {
 subnet = {
   subnet1 = {
     name                 = "frontend-subnet"
-    resource_group_name  = "dev-rg"
+    resource_group_name  = "myrg"
     location             = "eastus"
     virtual_network_name = "dev-vnet"
     address_prefixes     = ["10.0.1.0/24"]
   }
   subnet2 = {
     name                 = "backend-subnet"
-    resource_group_name  = "dev-rg"
+    resource_group_name  = "myrg"
     location             = "eastus"
     virtual_network_name = "dev-vnet"
     address_prefixes     = ["10.0.2.0/24"]
@@ -31,14 +31,14 @@ subnet = {
 public_ip = {
   pip1 = {
     name                = "frontend_pip"
-    resource_group_name = "dev-rg"
+    resource_group_name = "myrg"
     location            = "eastus"
     allocation_method   = "Static"
 
   }
   pip2 = {
     name                = "backend_pip"
-    resource_group_name = "dev-rg"
+    resource_group_name = "myrg"
     location            = "eastus"
     allocation_method   = "Static"
 
@@ -47,7 +47,7 @@ public_ip = {
 nic = {
   vm1 = {
     nic_name       = "frontend-nic"
-    rg_name        = "dev-rg"
+    rg_name        = "myrg"
     location       = "eastus"
     subnet_name    = "frontend-subnet"
     nic_vnet_name  = "dev-vnet"
@@ -58,7 +58,7 @@ nic = {
 virtual_machine = {
   vm1 = {
     name           = "frontend-vm"
-    rg_name        = "dev-rg"
+    rg_name        = "myrg"
     location       = "eastus"
     size           = "Standard_F2"
     admin_username = "admin123"
